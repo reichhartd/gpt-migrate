@@ -4,7 +4,7 @@
   "description": "<div align=\"center\">",
   "scripts": {
     "pip": "cd gpt_migrate && pip install -r requirements.txt",
-    "migrate": "python main.py --model gpt-4-turbo --sourcedir src --sourcelang java --sourceentry backend/kest-solution-service/src/main/java/com/cryptotax/kestsolution/KestSolutionApplication.java --targetdir target --targetlang go"
+    "migrate": "python main.py --model gpt-4o --sourcedir src --sourcelang java --sourceentry backend/kest-solution-service/src/main/java/com/cryptotax/kestsolution/KestSolutionApplication.java --targetdir target --targetlang go"
   },
   "keywords": [],
   "license": "MIT"
