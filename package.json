@@ -4,7 +4,8 @@
   "description": "<div align=\"center\">",
   "scripts": {
     "pip": "cd gpt_migrate && pip install -r requirements.txt",
-    "migrate": "python main.py --model gpt-4o --sourcedir src --sourcelang java --sourceentry backend/kest-solution-service/src/main/java/com/cryptotax/kestsolution/KestSolutionApplication.java --targetdir target --targetlang go"
+    "python": "python main.py --model gpt-4o --sourcedir src --sourcelang java --sourceentry backend/kest-solution-service/src/main/java/com/cryptotax/kestsolution/KestSolutionApplication.java --targetdir target --targetlang go",
+    "poetry": "poetry run gpt-migrate --model gpt-4o --maxtokens=4096 --sourcedir src --sourcelang java --sourceentry backend/kest-solution-service/src/main/java/com/cryptotax/kestsolution/KestSolutionApplication.java --targetdir target --targetlang go"
   },
   "keywords": [],
   "license": "MIT"
