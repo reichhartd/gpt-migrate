@@ -27,12 +27,13 @@ class Globals:
         self.targetport = targetport
         self.guidelines = guidelines
         self.ai = ai
-        
+
 
 @app.command()
 def main(
         model: str = typer.Option('openrouter/openai/gpt-4-32k', help="Large Language Model to be used. Default is 'openrouter/openai/gpt-4-32k'. To use OpenAI directly with your API key, use 'gpt-4-32k'."),
         temperature: float = typer.Option(0, help="Temperature setting for the AI model."),
+        # max_tokens: int = typer.Option(4096, help="Max tokens for the response."),
         sourcedir: str = typer.Option("../benchmarks/flask-nodejs/source", help="Source directory containing the code to be migrated."),
         sourcelang: str = typer.Option(None, help="Source language or framework of the code to be migrated."),
         sourceentry: str = typer.Option("app.py", help="Entrypoint filename relative to the source directory. For instance, this could be an app.py or main.py file for Python."),
@@ -49,6 +50,7 @@ def main(
     ai = AI(
         model=model,
         temperature=temperature,
+        # max_tokens=max_tokens,
     )
 
     sourcedir = os.path.abspath(sourcedir)
@@ -88,7 +90,7 @@ def main(
 
     ''' 2. Migration '''
     if step in ['migrate', 'all']:
-        target_deps_per_file = defaultdict(list) 
+        target_deps_per_file = defaultdict(list)
         def migrate(sourcefile, globals, parent_file=None):
             # recursively work through each of the files in the source directory, starting with the entrypoint.
             internal_deps_list, external_deps_list = get_dependencies(sourcefile=sourcefile,globals=globals)
@@ -120,7 +122,7 @@ def main(
                 debug_error(result,globals.testfiles,globals)
                 run_dockerfile(globals)
                 time.sleep(1) # wait for docker to spin up
-    
+
     typer.echo(typer.style("All tests complete. Ready to rumble. 💪", fg=typer.colors.GREEN))
 
 if __name__ == "__main__":
