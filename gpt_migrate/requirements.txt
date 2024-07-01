@@ -3,5 +3,5 @@ langchain-openai==0.1.7
 yaspin==3.0.2
 openai==1.30.3
 tree_sitter==0.22.3
-litellm==1.38.11
+litellm==1.41.2
 pydantic==1.10.15
